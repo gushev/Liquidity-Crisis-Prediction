@@ -6,7 +6,7 @@ The projects is done as part of a Data Science class, that took place in Plovdiv
 
 ## Getting Started
 
-The project uses has a virtual environment set up in place (venv), but it can also be installed using the requirements.txt file.
+The project uses a virtual environment set up in place (venv), but it can also be installed using the requirements.txt file.
 
 ### Prerequisites
 
