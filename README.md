@@ -25,7 +25,8 @@ $ source venv/bin/activate
 Or creating your own virtual environment with the python version that you have.
 
 ```
-$ pip install --python=/usr/bin/python3.6 -r requirements.txt --no-index <path/to/new/virtualenv/>
+$ virtualenv -p python3 venv
+$ source venv/bin/activate 
+(venv) $ pip install -r requirements.txt --no-index
+(venv) $ python main.py
 ```
-
-And then use the steps above.
