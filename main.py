@@ -48,7 +48,7 @@ X_train = sc_x.fit_transform(X_train)
 X_test = sc_x.transform(X_test)
 
 # Fitting classifier to the Training set
-classifier = getClassifier('RandomForestClassifier')
+classifier = getClassifier('SVC')
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
