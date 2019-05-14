@@ -2,8 +2,31 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
+from sklearn.naive_bayes import GaussianNB
+import numpy as np
+
+
+def getClassifier(type):
+    model_classifier = False
+    if type == 'DecisionTreeClassifier':
+        model_classifier = DecisionTreeClassifier(criterion='entropy')
+        model_classifier.fit(X_train, y_train)
+    elif type == 'RandomForestClassifier':
+        model_classifier = RandomForestClassifier(n_estimators=10, criterion='entropy')
+        model_classifier.fit(X_train, np.ravel(y_train, order='C'))
+    elif type == 'SVC':
+        model_classifier = SVC(kernel='rbf')
+        model_classifier.fit(X_train, np.ravel(y_train, order='C'))
+    elif type == 'NaiveBayes':
+        model_classifier = GaussianNB()
+        model_classifier.fit(X_train, np.ravel(y_train, order='C'))
+
+    return model_classifier
+
 
 dataset = pd.read_csv('data/data_company.trn', sep=';')
 
@@ -25,8 +48,7 @@ X_train = sc_x.fit_transform(X_train)
 X_test = sc_x.transform(X_test)
 
 # Fitting classifier to the Training set
-classifier = DecisionTreeClassifier(criterion='entropy')
-classifier.fit(X_train, y_train)
+classifier = getClassifier('RandomForestClassifier')
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
