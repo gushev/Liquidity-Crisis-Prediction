@@ -8,6 +8,8 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 from sklearn.naive_bayes import GaussianNB
 import numpy as np
+import time
+from datetime import timedelta
 
 
 def getClassifier(type):
@@ -47,14 +49,19 @@ sc_x = StandardScaler()
 X_train = sc_x.fit_transform(X_train)
 X_test = sc_x.transform(X_test)
 
+startTime = time.time()
+
 # Fitting classifier to the Training set
 classifier = getClassifier('SVC')
 
 # Predicting the Test set results
 y_pred = classifier.predict(X_test)
 
+timeTook = (str(timedelta(seconds=(time.time() - startTime))))
+
 # Making the Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
 score = accuracy_score(y_test, y_pred)
 print(cm)
 print('Accuracy: ' + str(score*100) + '%')
+print(timeTook)
